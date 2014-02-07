@@ -3,14 +3,38 @@ expect = chai.expect
 
 describe 'click', ->
   it 'plays a click', (d)->
-    i = 0
-    while i++ < 10
-      window.click('sine', i * 0.1, (i * 0.1)+0.9);
+    inc = Math.PI  / 3
+    counter = 0
+    d = 0
 
-    i = 0
-    while i++ < 10
-      v = i + 10
-      window.click('triangle', v * 0.1, (v * 0.1)+0.9);
+    o = osc('sine')
+    base = 3000
 
-    setTimeout(d, 3500)
+    int = ()->
+      counter += inc
+      hz = base * Math.abs(Math.sin(counter))
+      console.log hz
+      o.frequency.value = parseInt(hz, 10)
+
+    setInterval(int,  20)
+
+    # setTimeout(d, 3500)
+
+  it 'plays another click', (d)->
+    inc = Math.PI  / 13
+    counter = 0
+    d = 0
+
+    o = osc('sine')
+    base = 300
+
+    int = ()->
+      counter += inc
+      hz = base * Math.abs(Math.sin(counter))
+      console.log hz
+      o.frequency.value = parseInt(hz, 10)
+
+    setInterval(int,  2)
+
+    # setTimeout(d, 3500)
 
